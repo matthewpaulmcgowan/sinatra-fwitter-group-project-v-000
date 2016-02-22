@@ -1,0 +1,16 @@
+<html>
+  <head>
+  </head>
+
+  <body>
+    <h1>Old Tweet</h1>
+    <h3><%=@tweet.content%></h3>
+   
+    <form method="post" action="/tweets/<%=@tweet.id%>">
+      <h1>New Tweet</h1>
+          <h3>Tweet Content:<input id="content" type="text" name="content"></h3>
+      <input id="hidden" type="hidden" name="_method" value="patch">
+      <input type="submit" value="submit">
+    </form>
+  </body>
+</html>

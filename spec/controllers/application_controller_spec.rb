@@ -138,6 +138,7 @@ describe ApplicationController do
       fill_in(:username, :with => "becky567")
       fill_in(:password, :with => "kittens")
       click_button 'submit'
+    
       expect(page.current_path).to eq('/tweets')
 
 
@@ -150,7 +151,6 @@ describe ApplicationController do
       tweet1 = Tweet.create(:content => "tweeting!", :user_id => user.id)
       tweet2 = Tweet.create(:content => "tweet tweet tweet", :user_id => user.id)
       get "/users/#{user.slug}"
-
       expect(last_response.body).to include("tweeting!")
       expect(last_response.body).to include("tweet tweet tweet")
 
@@ -356,6 +356,7 @@ describe ApplicationController do
 
         click_button 'submit'
         expect(Tweet.find_by(:content => "i love tweeting")).to be_instance_of(Tweet)  
+        
         expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)  
 
         expect(page.status_code).to eq(200)

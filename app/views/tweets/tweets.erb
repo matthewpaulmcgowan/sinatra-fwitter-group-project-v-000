@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Welcome, Here is a list of all Flatiron Tweets</h1>
+       <%@tweets.each do |tweet|%>
+         <h2><%=tweet.content%></h2>
+       <%end%>
+    <h2>You can create a new tweet <a href="/tweets/new">Here!</a></h2>
+  </body>
+</html>
