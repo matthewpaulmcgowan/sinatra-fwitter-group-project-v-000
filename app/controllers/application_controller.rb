@@ -106,9 +106,13 @@ class ApplicationController < Sinatra::Base
   end
   
   get '/tweets/:id/edit' do 
-    if logged_in?
+    if logged_in? 
       @tweet = current_tweet
-      erb :"tweets/edit_tweet"
+        if @tweet.user_id == session[:id]
+          erb :"tweets/edit_tweet"
+        else
+          redirect "/tweets"
+        end
     else
       redirect "/login"
     end
@@ -130,6 +134,8 @@ class ApplicationController < Sinatra::Base
       @tweet = current_tweet
       if current_user.id == @tweet.user_id 
         @tweet.delete
+        redirect "/tweets"
+      else
         redirect "/tweets"
       end
     else
